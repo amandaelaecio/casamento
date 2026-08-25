@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "AmandaLaecio";
+  src: url("../fonts/bellerin-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AmandaLaecio2";
+  src: url("../fonts/CormorantGaramond-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
