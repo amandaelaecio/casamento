@@ -188,12 +188,20 @@ h2 {
 
 .dress-code-imagem img {
   width: 100%;
-  max-width: 400px;
-  max-height: 900px;
+  max-width: 900px;
+  max-height: 400px;
   object-fit: cover;
   border-radius: 18px;
   display: block;
   margin: 0 auto;
+}
+
+.dress-code-legenda {
+  font-family: "AmandaLaecio2";
+  font-size: 2rem;
+  font-weight: 100;
+  margin-bottom: 15px;
+  color: var(--verde);
 }
 
 .legenda-imagem {
@@ -280,7 +288,7 @@ h2 {
   position: absolute;
   inset: 0;
 
-  background-image: url("../imgs/2.jpeg");
+  background-image: url("../imgs/2.png");
   background-size: cover;
   background-position: center;
 
@@ -429,5 +437,14 @@ h2 {
     max-width: 380px;
     text-align: center;
     margin: 0;
+  }
+  .dress-code-imagem img {
+    width: 100%;
+    max-width: 400px;
+    max-height: 900px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    margin: 0 auto;
   }
 }
