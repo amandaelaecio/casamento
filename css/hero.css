@@ -2,7 +2,8 @@
 .hero {
   height: 100vh;
   position: relative;
-  overflow: hidden;
+  /* Mude de overflow: hidden para overflow: visible */
+  overflow: visible;
 
   display: flex;
   align-items: flex-end;

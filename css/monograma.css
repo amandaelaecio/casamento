@@ -1,15 +1,25 @@
 .monograma-inicial-container {
   position: absolute;
-  bottom: -10px;
+  /* Desloca metade do tamanho da imagem (170px / 2 = 85px) para transitar perfeitamente entre as seções */
+  bottom: -155px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 10; /* Garante que fique acima de todos os elementos da hero */
 }
 
 .monograma-inicial-container img {
   width: 170px;
   height: 170px;
   object-fit: contain;
+  border-radius: 50%;
+
+  /* Sombra circular destacando o monograma entre a Hero e o fundo */
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.18);
+
+  /* Garante um fundo branco ou translúcido caso a imagem seja PNG transparente e precise de contraste */
+  background-color: #ffffff;
+  display: block;
+  margin-bottom: 150px;
 }
 
 .monograma-final-container {
@@ -37,4 +47,11 @@
   height: 300px;
   object-fit: contain;
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .monograma-inicial-container img {
+    width: 130px;
+    height: 130px;
+  }
 }
