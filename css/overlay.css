@@ -8,10 +8,12 @@
   justify-content: center;
   align-items: center;
 
-  background: #f6f1e8;
+  /* Sem fundo para deixar o conteúdo de trás aparecer quando necessário */
+  background: transparent;
 
   opacity: 1;
   visibility: visible;
+  cursor: pointer;
 
   transition:
     opacity 1s ease,
@@ -24,176 +26,95 @@
   pointer-events: none;
 }
 
-/* ===== ENVELOPE (PC - Exatamente como no seu código original) ===== */
+.envelope,
+.envelope * {
+  pointer-events: none;
+}
+
+/* ===== ENVELOPE BASE (Sempre 100% da tela) ===== */
 .envelope {
   position: relative;
-
-  height: 100vh;
-  width: min(100vw, calc(100vh * 832 / 1216));
-
-  aspect-ratio: 832 / 1216;
-
+  width: 100vw;
+  height: 100dvh; /* Ocupa 100% da altura da janela visível */
   perspective: 1800px;
+  overflow: hidden;
 }
 
-.envelope-full {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  z-index: 1;
-}
-
-.envelope.zoom {
-  transform: scale(1.06);
-}
-
-.envelope-back {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-
-  display: block;
-  z-index: 2;
-}
-
-.envelope-flap {
-  position: absolute;
-  inset: 0;
-
-  transform-origin: top center;
-  transform-style: preserve-3d;
-
-  transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
-
-  z-index: 5;
-}
-
-.flap-img {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  pointer-events: none;
-
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
-}
-
-.envelope-full,
+/* Preenchimento total para o container de picture e as imagens */
+.envelope-back-pic,
+.flap-pic,
 .envelope-back,
 .flap-img {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
-
+  /* FORÇA A IMAGEM A PREENCHER TUDO SEM DEIXAR BORDAS */
   object-fit: cover;
+  display: block;
+}
+
+.flap-img {
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+}
+
+/* ABA / FLAP */
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+  z-index: 5;
 }
 
 .envelope.open .envelope-flap {
   transform: rotateX(150deg);
 }
 
+/* SELO */
 .seal-btn {
-  position: absolute;
+  display: none;
+}
 
-  left: 50%;
-  top: 70%;
-
-  transform: translate(-50%, -50%);
-
-  width: 38%;
-
-  border: none;
-  background: transparent;
-  padding: 0;
-
-  cursor: pointer;
-
-  z-index: 20;
+@media (orientation: portrait) {
+  .seal-btn {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 63%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 20;
+  }
 }
 
 .seal-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-
   display: block;
-
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.22));
 }
 
-/* ===== MODIFICAÇÕES APENAS PARA CELULAR ===== */
-@media (max-width: 768px) {
-  /* No celular o fundo do overlay fica transparente para o hero aparecer */
-  .overlay {
-    background: transparent;
-  }
-
-  /* Oculta a imagem estática interna da carta no celular */
-  .envelope-full {
-    display: none !important;
-  }
-
-  .envelope {
-    width: 100vw;
-    height: 100dvh;
-    aspect-ratio: auto;
-  }
-
-  .envelope-back,
-  .flap-img {
-    object-fit: cover;
-  }
-
-  .seal-btn {
-    width: 60%;
-    top: 63%;
-  }
-
-  .hero {
-    height: 100dvh;
-  }
-}
-
-/* Torna o overlay clicável de ponta a ponta sem alterar o layout */
-.overlay {
-  cursor: pointer;
-}
-
-/* Evita que elementos internos "bloqueiem" a captura do clique no overlay */
-.envelope,
-.envelope * {
-  pointer-events: none;
-}
-
-/* Botão cilíndrico vazado com texto verde #52622d e efeito pulsante */
-/* Animação pulsante suavizada */
+/* ANIMAÇÃO E TEXTO INSTRUTIVO */
 @keyframes pulseBtn {
   0%,
   100% {
     transform: translateX(-50%) scale(1);
   }
   50% {
-    transform: translateX(-50%) scale(1.02); /* Expansão mínima */
+    transform: translateX(-50%) scale(1.02);
   }
 }
 
 .tap-instruction {
   position: absolute;
-  bottom: 50px;
+  bottom: 40px;
   left: 50%;
   z-index: 999;
 
@@ -211,8 +132,6 @@
 
   pointer-events: none;
   transition: opacity 0.3s ease;
-
-  /* Tempo aumentado para 2.8s para suavizar o movimento */
   animation: pulseBtn 2.8s infinite ease-in-out;
 }
 
@@ -221,9 +140,16 @@
   visibility: hidden;
 }
 
-@media (max-width: 768px) {
+/* ===== AJUSTES QUANDO A TELA ESTIVER EM MODO VERTICAL (PORTRAIT) ===== */
+/* Aplica-se tanto para celulares quanto para janelas do PC redimensionadas na vertical */
+@media (orientation: portrait) {
+  .seal-btn {
+    width: 55%;
+    top: 63%;
+  }
+
   .tap-instruction {
-    bottom: 35px;
+    bottom: 30px;
     font-size: 0.8rem;
     padding: 8px 18px;
   }

@@ -26,26 +26,34 @@
     <link rel="stylesheet" href="./css/overlay.css" />
   </head>
   <body id="topo" class="no-scroll">
-    <!-- OVERLAY (Apenas a carta por cima do site) -->
     <div id="overlay" class="overlay">
       <div id="envelope" class="envelope">
-        <!-- Imagem do PC: Textura de papel -->
-        <img
-          src="./imgs/textura-de-papel.png"
-          class="envelope-full"
-          alt="Envelope Papel"
-        />
-
-        <!-- Imagem do Celular: Carta vazada (transparente por dentro) -->
-        <img src="./imgs/baixo.png" class="envelope-back" alt="Envelope Base" />
+        <picture class="envelope-back-pic">
+          <source
+            srcset="./imgs/baixo-wide1.png"
+            media="(orientation: landscape)"
+          />
+          <img
+            src="./imgs/baixo.png"
+            class="envelope-back"
+            alt="Envelope Base"
+          />
+        </picture>
 
         <div class="envelope-flap">
-          <img src="./imgs/cima.png" class="flap-img" alt="Aba do envelope" />
-
-          <button id="sealBtn" class="seal-btn" aria-label="Abrir convite">
-            <img src="./imgs/selo.png" class="seal-img" alt="Selo" />
-          </button>
+          <picture class="flap-pic">
+            <source
+              srcset="./imgs/cima-wide5.png"
+              media="(orientation: landscape)"
+            />
+            <img
+              src="./imgs/cima2.png"
+              class="flap-img"
+              alt="Aba do envelope"
+            />
+          </picture>
         </div>
+
         <p class="tap-instruction">
           Toque em qualquer lugar para abrir o convite
         </p>
