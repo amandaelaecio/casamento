@@ -275,26 +275,21 @@ h2 {
 }
 
 .final-imagem {
-  width: 100%;
-  height: 100vh;
-
   position: relative;
+  width: 100%;
+  aspect-ratio: 1536 / 1024;
   overflow: hidden;
-  margin-top: 100px;
 }
 
-/* IMAGEM */
 .final-background {
   position: absolute;
   inset: 0;
-
-  background-image: url("../imgs/2.png");
-  background-size: cover;
+  background-image: url("../imgs/18.jpeg");
+  background-size: 100% 100%;
   background-position: center;
-
+  background-repeat: no-repeat;
   z-index: 0;
 }
-
 /* FADE NO TOPO */
 .final-imagem::before {
   content: "";
