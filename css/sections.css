@@ -27,7 +27,7 @@ h2 {
 .intro-box {
   text-align: center;
   line-height: 1.8;
-  font-size: 1rem;
+  font-size: 1.3rem;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -94,7 +94,7 @@ h2 {
   margin: 0 auto 50px;
   text-align: center;
   line-height: 1.9;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 /* Galeria */
@@ -217,7 +217,7 @@ h2 {
   max-width: 850px;
   margin: 0 auto;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .cerimonia-texto p {
@@ -228,7 +228,7 @@ h2 {
 .rsvp-container {
   max-width: 700px;
   margin: 0 auto;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .rsvp-input {
@@ -383,6 +383,23 @@ h2 {
 .historia-extra + .historia-extra + p {
   margin-top: 60px;
 }
+.historia-galeria img.wide {
+  width: auto;
+  height: 594px;
+  max-width: 1500px;
+  object-fit: cover;
+}
+
+/* Responsivo (Mobile) */
+@media (max-width: 768px) {
+  .historia-galeria img.wide {
+    width: 100vw;
+    height: 100vw;
+    max-height: 500px;
+    object-fit: cover;
+  }
+}
+
 /* ==========================================
    SEGUNDO BLOCO
 ========================================== */
