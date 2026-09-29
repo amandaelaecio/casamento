@@ -14,28 +14,26 @@
 
 .convite-card {
   display: flex;
-
   align-items: center;
-
   gap: 15px;
-
   padding: 18px;
-
   margin: 12px 0;
-
   border-radius: 15px;
-
   background: rgba(255, 255, 255, 0.18);
 
-  cursor: pointer;
+  /* Borda adicionada */
+  border: 2px solid var(--accent-dark, #000); /* Substitua o fallback '#000' se não usar variáveis CSS */
 
+  cursor: pointer;
   transition: 0.3s;
 }
 
 .convite-card:hover {
   transform: translateY(-3px);
-
   background: rgba(255, 255, 255, 0.28);
+
+  /* Opcional: realçar a borda no hover */
+  /* border-color: var(--accent-dark); */
 }
 
 .convite-icon {
@@ -94,6 +92,7 @@
   font-size: 15px;
 
   transition: 0.25s;
+  border: 2px solid var(--accent-dark, #000);
 }
 
 .guest-btn:hover {
