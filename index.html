@@ -384,7 +384,7 @@
           style="width: 100%; margin-top: 10px"
           onclick="salvarPresente('cartao')"
         >
-          Salvar mensagem
+          Salvar mensagem (Opcional)
         </button>
         <p
           onclick="closeModal('cartaoModal')"
@@ -598,6 +598,7 @@
       }
       let salvandoPresente = false;
 
+      // Algoritmo do PIX Copia e Cola estático
       async function salvarPresente(tipoPagamento) {
         if (salvandoPresente) {
           return false;
@@ -626,6 +627,11 @@
 
         if (!nome) {
           alert("Digite seu nome antes de continuar.");
+          salvandoPresente = false;
+          if (botao_mensagem) {
+            botao_mensagem.disabled = false;
+            botao_mensagem.innerText = "Salvar mensagem (Opcional)";
+          }
           return false;
         }
 
@@ -653,6 +659,17 @@
           const dados = await response.json();
 
           alert("Presente registrado com sucesso!");
+
+          // Redirecionamento para o link do cartão
+          if (
+            tipoPagamento === "cartao" &&
+            presenteAtual &&
+            presenteAtual.link_cartao
+          ) {
+            window.open(presenteAtual.link_cartao, "_blank"); // Abre em uma nova aba
+            // Caso queira redirecionar na mesma aba, use:
+            // window.location.href = presenteAtual.link;
+          }
 
           return dados;
         } catch (e) {
